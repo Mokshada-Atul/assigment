@@ -25,10 +25,10 @@ module.exports = function (app) {
   app.post("/api/auth/signin", (req, res) => {
     controller.signin(req, res);
   });
-  app.post("/upload_files", upload.array("files"),
+  app.post("/upload_files", upload.array("files"),(req,res)=>{
     controller.uploadFiles(req, res)
-  )
-  app.delete("/delete-file", controller.deleteFile(req, res));
+})
+  app.delete("/delete-file", (req,res)=>{controller.deleteFile(req, res)});
 
-  app.get("/get-file", controller.getFile(req, res));
+  app.get("/get-file",(req,res)=>{ controller.getFile(req, res)});
 }
